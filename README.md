@@ -1,10 +1,16 @@
 
+
 ---
 
 # 🛡️ Modern Malware Triage Analysis System
 
 This project is a **modular malware triage framework** built in Python that automates multiple stages of **malware static analysis**.
 It integrates popular tools and custom modules to quickly extract metadata, detect suspicious indicators, and generate a detailed **forensic report**.
+
+
+
+<img width="1672" height="856" alt="image" src="https://github.com/user-attachments/assets/2350462e-d4ba-49cb-8ec8-9044a3a01f98" />
+
 
 ---
 
