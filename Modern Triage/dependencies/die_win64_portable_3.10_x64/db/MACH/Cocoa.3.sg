@@ -1,0 +1,11 @@
+// Detect It Easy: detection rule file format
+
+init("library", "Cocoa");
+
+function detect(bShowType, bShowVersion, bShowOptions) {
+    if (MACH.isLibraryPresent("Cocoa")) {
+        bDetected = true;
+    }
+
+    return result(bShowType, bShowVersion, bShowOptions);
+}

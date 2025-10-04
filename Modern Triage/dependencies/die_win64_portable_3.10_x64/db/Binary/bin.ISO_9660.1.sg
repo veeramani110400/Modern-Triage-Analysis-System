@@ -1,0 +1,13 @@
+// Detect It Easy: detection rule file format
+
+init("format", "ISO 9660");
+
+function detect(bShowType, bShowVersion, bShowOptions) {
+    if (Binary.getSize() > 0x8010) {
+        if (Binary.compare("01'CD001'01", 0x8000)) {
+            bDetected = true;
+        }
+    }
+
+    return result(bShowType, bShowVersion, bShowOptions);
+}

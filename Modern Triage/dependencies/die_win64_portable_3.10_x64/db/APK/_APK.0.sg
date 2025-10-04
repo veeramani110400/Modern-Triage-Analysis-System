@@ -1,0 +1,15 @@
+// Detect It Easy: detection rule file format
+
+init("operation system", "Android");
+
+function detect(bShowType, bShowVersion, bShowOptions) {
+    if (APK.isVerbose()) {
+        sName = APK.getOperationSystemName();
+        sVersion = APK.getOperationSystemVersion();
+        sOptions = APK.getOperationSystemOptions();
+
+        bDetected = true;
+    }
+
+    return result(bShowType, bShowVersion, bShowOptions);
+}

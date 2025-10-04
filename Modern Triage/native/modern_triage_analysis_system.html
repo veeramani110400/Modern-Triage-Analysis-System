@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malware Analysis Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        .header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1.5rem 0;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+        .header h1 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin: 0;
+            color: #1f2937;
+        }
+        .file-input-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .file-input-label {
+            padding: 0.75rem 1.5rem;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .file-input-label:hover {
+            background-color: #2563eb;
+        }
+        .file-input {
+            display: none;
+        }
+        .file-status {
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            border: 1px solid #e5e7eb;
+            background-color: #ffffff;
+        }
+        .file-status.success {
+            border-color: #22c55e;
+            color: #15803d;
+        }
+        .file-status.error {
+            border-color: #ef4444;
+            color: #b91c1c;
+        }
+        .tabs {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .tab-button {
+            padding: 1rem 1.5rem;
+            background-color: transparent;
+            color: #4b5563;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .tab-button:hover {
+            color: #1d4ed8;
+            border-bottom-color: #bfdbfe;
+        }
+        .tab-button.active {
+            color: #1d4ed8;
+            border-bottom-color: #3b82f6;
+            font-weight: 600;
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .table-container {
+            max-height: 70vh;
+            overflow-y: auto;
+            border-radius: 0.5rem;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            scrollbar-width: thin;
+            scrollbar-color: #d1d5db #f3f4f6;
+        }
+        .table-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .table-container::-webkit-scrollbar-track {
+            background: #f3f4f6;
+            border-radius: 0.5rem;
+        }
+        .table-container::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 0.5rem;
+        }
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        th, td {
+            padding: 0.875rem 1.25rem;
+            text-align: left;
+            font-size: 0.875rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        th {
+            background: #f9fafb;
+            color: #374151;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            font-weight: 600;
+            border-top: 1px solid #e5e7eb;
+        }
+        tr:last-child th, tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover {
+            background: #f9fafb;
+        }
+        .nested-table {
+            margin: 0.5rem 0;
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .nested-table th, .nested-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .nested-table th {
+            background: #f3f4f6;
+            color: #374151;
+            font-weight: 600;
+        }
+        .error-message {
+            color: #b91c1c;
+            font-weight: 500;
+            padding: 1rem;
+        }
+        .success-message {
+            color: #15803d;
+            font-weight: 500;
+            padding: 1rem;
+        }
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            font-size: 1rem;
+            color: #6b7280;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            .tab-button {
+                padding: 0.75rem 1rem;
+                font-size: 0.875rem;
+            }
+            .file-input-label {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.875rem;
+            }
+            th, td {
+                padding: 0.75rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="container">
+        <div class="header">
+            <h1>Malware Analysis Report</h1>
+        </div>
+        <div class="file-input-container">
+            <label for="fileInput" class="file-input-label">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0l-4 4m4-4l4 4m6 4v6m-6-3l3-3m0 0l3 3m-3-3v6"></path>
+                </svg>
+                Upload Report.txt
+            </label>
+            <input type="file" id="fileInput" class="file-input" accept=".txt" aria-label="Upload report file">
+            <span id="fileStatus" class="file-status">No file selected</span>
+        </div>
+        <div class="tabs">
+            <button class="tab-button active" data-tab="module1" aria-selected="true" role="tab">Module 1: Detect It Easy</button>
+            <button class="tab-button" data-tab="module2" aria-selected="false" role="tab">Module 2: Strings Extraction</button>
+            <button class="tab-button" data-tab="module3" aria-selected="false" role="tab">Module 3: PE Header</button>
+            <button class="tab-button" data-tab="module5" aria-selected="false" role="tab">Module 5: Hidden Attributes</button>
+            <button class="tab-button" data-tab="module6" aria-selected="false" role="tab">Module 6: MalAPI Imports</button>
+            <button class="tab-button" data-tab="module7" aria-selected="false" role="tab">Module 7: File Signatures</button>
+        </div>
+        <div class="tab-content-container">
+            <div id="module1" class="tab-content active">
+                <div class="table-container" id="module1-content"><div class="loading">Please upload a Report.txt file</div></div>
+            </div>
+            <div id="module2" class="tab-content">
+                <div class="table-container" id="module2-content"><div class="loading">Please upload a Report.txt file</div></div>
+            </div>
+            <div id="module3" class="tab-content">
+                <div class="table-container" id="module3-content"><div class="loading">Please upload a Report.txt file</div></div>
+            </div>
+            <div id="module5" class="tab-content">
+                <div class="table-container" id="module5-content"><div class="loading">Please upload a Report.txt file</div></div>
+            </div>
+            <div id="module6" class="tab-content">
+                <div class="table-container" id="module6-content"><div class="loading">Please upload a Report.txt file</div></div>
+            </div>
+            <div id="module7" class="tab-content">
+                <div class="table-container" id="module7-content"><div class="loading">Please upload a Report.txt file</div></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to parse report and generate tables
+        function parseReport(report) {
+            const modules = {
+                module1: { data: [], sections: [], overlay: null },
+                module2: { errors: [], results: [], summary: null },
+                module3: { data: [] },
+                module5: { files: [] },
+                module6: { summary: null, techniques: {} },
+                module7: { mismatches: [], summary: null }
+            };
+            let currentModule = null;
+            let currentTechnique = null;
+            let currentApiEntry = null;
+            let inJson = false;
+            let jsonLines = [];
+            let currentMismatch = null;
+            const lines = report.split('\n');
+
+            // Simple signature database for client-side matching (subset for demo purposes)
+            // Ideally, this should come from the report or a separate JSON file
+            const signatureDatabase = {
+                '4d5a': 'PE Executable (EXE)',
+                '25504446': 'PDF Document',
+                'ffd8ffe0': 'JPEG Image',
+                '504b0304': 'ZIP Archive',
+                '7f454c46': 'ELF Executable'
+                // Add more signatures as needed
+            };
+
+            // Parse report lines
+            for (let i = 0; i < lines.length; i++) {
+                let line = lines[i].trim();
+                if (!line || line.includes('Executing command') || line.includes('Raw JSON Output:') || line.includes('Raw Text Output:') || line.includes('[!] Heuristic scan is disabled')) {
+                    if (line.includes('Raw JSON Output:')) {
+                        inJson = true;
+                        jsonLines = [];
+                    }
+                    continue;
+                }
+                if (inJson) {
+                    jsonLines.push(line);
+                    if (line === '}') {
+                        inJson = false;
+                    }
+                    continue;
+                }
+
+                // Module headers
+                if (line.includes('=== Module 1: Detect It Easy Analysis ===')) {
+                    currentModule = 'module1';
+                } else if (line.includes('=== Module 2: String Extraction and Analysis ===')) {
+                    currentModule = 'module2';
+                } else if (line.includes('=== Module 3: PE Header Analysis ===')) {
+                    currentModule = 'module3';
+                } else if (line.includes('=== Module 5: Remove Hidden Attributes ===')) {
+                    currentModule = 'module5';
+                } else if (line.includes('=== Module 6: MalAPI.io Import Comparison ===')) {
+                    currentModule = 'module6';
+                } else if (line.includes('=== Module 7: File Signature Verification ===')) {
+                    currentModule = 'module7';
+                } else if (line.includes('=== Malware Analysis Completed ===')) {
+                    currentModule = null;
+                } else if (currentModule) {
+                    // Module-specific parsing
+                    if (currentModule === 'module1') {
+                        if (line.includes('Parsed Detect It Easy Results:')) {
+                            continue;
+                        } else if (line.includes('Sections:')) {
+                            continue;
+                        } else if (line.includes('Section(')) {
+                            const match = line.match(/Section\(\d+\)\['([^']+)'\]: Size=(\d+) bytes, Entropy=([\d.]+), Status=(.+)/);
+                            if (match) {
+                                modules.module1.sections.push({
+                                    name: match[1],
+                                    size: match[2],
+                                    entropy: match[3],
+                                    status: match[4]
+                                });
+                            }
+                        } else if (line.includes('Overlay:')) {
+                            const match = line.match(/Overlay: (.+)/);
+                            if (match) {
+                                modules.module1.overlay = match[1];
+                            }
+                        } else if (line.match(/^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] ([^:]+): (.+)/)) {
+                            const match = line.match(/^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] ([^:]+): (.+)/);
+                            modules.module1.data.push({ key: match[1], value: match[2] });
+                        }
+                    } else if (currentModule === 'module2') {
+                        if (line.match(/^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] Error:/)) {
+                            modules.module2.errors.push(line.replace(/^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] /, ''));
+                        } else if (line.match(/^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] String:/)) {
+                            const match = line.match(/^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] String: (.+)/);
+                            if (match) {
+                                modules.module2.results.push(match[1]);
+                            }
+                        } else if (line.includes('No strings extracted') || line.includes('Extracted')) {
+                            modules.module2.summary = line.replace(/^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] /, '');
+                        }
+                    } else if (currentModule === 'module3') {
+                        const match = line.match(/^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] (.+): (.+)/);
+                        if (match) {
+                            modules.module3.data.push({ key: match[1], value: match[2] });
+                        }
+                    } else if (currentModule === 'module5') {
+                        if (line.includes('Removed hidden/system attributes from:')) {
+                            const match = line.match(/Removed hidden\/system attributes from: (.+)/);
+                            if (match) {
+                                modules.module5.files.push(match[1]);
+                            }
+                        }
+                    } else if (currentModule === 'module6') {
+                        if (line.includes('Technique:')) {
+                            currentTechnique = line.match(/Technique: (.+)/)[1];
+                            modules.module6.techniques[currentTechnique] = [];
+                            currentApiEntry = null;
+                        } else if (line.includes('API:')) {
+                            const api = line.match(/API: (.+)/)[1];
+                            currentApiEntry = { api, tactic: 'N/A', category: 'N/A' };
+                            modules.module6.techniques[currentTechnique].push(currentApiEntry);
+                        } else if (line.includes('Tactic:') && currentApiEntry) {
+                            const tactic = line.match(/Tactic: (.+)/)[1];
+                            currentApiEntry.tactic = tactic;
+                        } else if (line.includes('Category:') && currentApiEntry) {
+                            const category = line.match(/Category: (.+)/)[1];
+                            currentApiEntry.category = category;
+                        } else if (line.match(/Extracted \d+ imports/) || line.includes('Non-matched imports')) {
+                            modules.module6.summary = (modules.module6.summary || '') + (modules.module6.summary ? '\n' : '') + line.replace(/^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] /, '');
+                        }
+                    } else if (currentModule === 'module7') {
+                        if (line.includes('No file signature mismatches found')) {
+                            modules.module7.summary = line.replace(/^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] /, '');
+                        } else if (line.includes('Found') && line.includes('file signature mismatches:')) {
+                            const match = line.match(/Found (\d+) file signature mismatches:/);
+                            if (match) {
+                                modules.module7.summary = `Found ${match[1]} file signature mismatches`;
+                            }
+                        } else if (line.includes('-> Mismatch in file:')) {
+                            const fileMatch = line.match(/-> Mismatch in file: (.+)/);
+                            if (fileMatch) {
+                                currentMismatch = { 
+                                    file: fileMatch[1], 
+                                    extension: '', 
+                                    expected_types: '', 
+                                    expected_signatures: '', 
+                                    found_signature: '',
+                                    found_type: 'Unknown' 
+                                };
+                                modules.module7.mismatches.push(currentMismatch);
+                            }
+                        } else if (currentMismatch && line.includes('Extension:')) {
+                            const extMatch = line.match(/Extension: \.(.+)/);
+                            if (extMatch) {
+                                currentMismatch.extension = extMatch[1];
+                            }
+                        } else if (currentMismatch && line.includes('Expected Type(s):')) {
+                            const typesMatch = line.match(/Expected Type\(s\): (.+)/);
+                            if (typesMatch) {
+                                currentMismatch.expected_types = typesMatch[1];
+                            }
+                        } else if (currentMismatch && line.includes('Expected Signature(s):')) {
+                            const sigMatch = line.match(/Expected Signature\(s\): (.+)/);
+                            if (sigMatch) {
+                                currentMismatch.expected_signatures = sigMatch[1];
+                            }
+                        } else if (currentMismatch && line.includes('Found Signature (start):')) {
+                            const foundMatch = line.match(/Found Signature \(start\): (.+)/);
+                            if (foundMatch) {
+                                currentMismatch.found_signature = foundMatch[1];
+                                // Attempt to match found signature to a known type
+                                const cleanSig = currentMismatch.found_signature.replace(/\s/g, '').toLowerCase();
+                                for (const [sig, type] of Object.entries(signatureDatabase)) {
+                                    if (cleanSig.startsWith(sig)) {
+                                        currentMismatch.found_type = type;
+                                        break;
+                                    }
+                                }
+                                currentMismatch = null; // Reset after collecting all mismatch details
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Generate tables for each module
+            function generateModule1Table() {
+                let html = '<table><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody>';
+                for (const item of modules.module1.data) {
+                    html += `<tr><td>${item.key}</td><td>${item.value}</td></tr>`;
+                }
+                if (modules.module1.sections.length > 0) {
+                    html += `<tr><td>Sections</td><td><table class="nested-table"><thead><tr><th>Name</th><th>Size (bytes)</th><th>Entropy</th><th>Status</th></tr></thead><tbody>`;
+                    for (const section of modules.module1.sections) {
+                        html += `<tr><td>${section.name}</td><td>${section.size}</td><td>${section.entropy}</td><td>${section.status}</td></tr>`;
+                    }
+                    html += '</tbody></table></td></tr>';
+                }
+                if (modules.module1.overlay) {
+                    html += `<tr><td>Overlay</td><td>${modules.module1.overlay}</td></tr>`;
+                }
+                html += '</tbody></table>';
+                document.getElementById('module1-content').innerHTML = html;
+            }
+
+            function generateModule2Table() {
+                let html = '<table><thead><tr><th>Summary</th></tr></thead><tbody>';
+                if (modules.module2.summary) {
+                    html += `<tr><td>${modules.module2.summary}</td></tr>`;
+                } else {
+                    html += `<tr><td>No summary available</td></tr>`;
+                }
+                html += '</tbody></table>';
+                if (modules.module2.results.length > 0) {
+                    html += '<h3 class="text-lg font-semibold mt-4 mb-2">Extracted Strings</h3>';
+                    html += '<table class="nested-table"><thead><tr><th>String</th></tr></thead><tbody>';
+                    for (const result of modules.module2.results) {
+                        html += `<tr><td>${result}</td></tr>`;
+                    }
+                    html += '</tbody></table>';
+                }
+                if (modules.module2.errors.length > 0) {
+                    html += '<h3 class="text-lg font-semibold mt-4 mb-2">Errors</h3>';
+                    html += '<table class="nested-table"><thead><tr><th>Error</th></tr></thead><tbody>';
+                    for (const error of modules.module2.errors) {
+                        html += `<tr><td class="error-message">${error}</td></tr>`;
+                    }
+                    html += '</tbody></table>';
+                }
+                document.getElementById('module2-content').innerHTML = html;
+            }
+
+            function generateModule3Table() {
+                let html = '<table><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody>';
+                for (const item of modules.module3.data) {
+                    html += `<tr><td>${item.key}</td><td>${item.value}</td></tr>`;
+                }
+                html += '</tbody></table>';
+                document.getElementById('module3-content').innerHTML = html;
+            }
+
+            function generateModule5Table() {
+                let html = '<table><thead><tr><th>File Path</th></tr></thead><tbody>';
+                if (modules.module5.files.length > 0) {
+                    for (const file of modules.module5.files) {
+                        html += `<tr><td>${file}</td></tr>`;
+                    }
+                } else {
+                    html += '<tr><td>No hidden or system items found</td></tr>';
+                }
+                html += '</tbody></table>';
+                document.getElementById('module5-content').innerHTML = html;
+            }
+
+            function generateModule6Table() {
+                let html = '<table><thead><tr><th>Summary</th></tr></thead><tbody>';
+                if (modules.module6.summary) {
+                    html += `<tr><td>${modules.module6.summary.replace('\n', '<br>')}</td></tr>`;
+                } else {
+                    html += `<tr><td>No summary available</td></tr>`;
+                }
+                html += '</tbody></table>';
+                for (const [technique, apis] of Object.entries(modules.module6.techniques)) {
+                    html += `<h3 class="text-lg font-semibold mt-4 mb-2">${technique}</h3>`;
+                    html += '<table class="nested-table"><thead><tr><th>API</th><th>Tactic</th><th>Category</th></tr></thead><tbody>';
+                    for (const api of apis) {
+                        html += `<tr><td>${api.api}</td><td>${api.tactic}</td><td>${api.category}</td></tr>`;
+                    }
+                    html += '</tbody></table>';
+                }
+                document.getElementById('module6-content').innerHTML = html;
+            }
+
+            function generateModule7Table() {
+                let html = '<table><thead><tr><th>Summary</th></tr></thead><tbody>';
+                if (modules.module7.summary) {
+                    html += `<tr><td>${modules.module7.summary}</td></tr>`;
+                } else {
+                    html += `<tr><td>No summary available</td></tr>`;
+                }
+                html += '</tbody></table>';
+                if (modules.module7.mismatches.length > 0) {
+                    html += '<h3 class="text-lg font-semibold mt-4 mb-2">Signature Mismatches</h3>';
+                    html += '<table class="nested-table"><thead><tr><th>File</th><th>Extension</th><th>Found Signature</th><th>Found Type</th><th>Expected Signatures</th><th>Expected Types</th></tr></thead><tbody>';
+                    for (const mismatch of modules.module7.mismatches) {
+                        html += `<tr><td>${mismatch.file}</td><td>${mismatch.extension}</td><td>${mismatch.found_signature}</td><td>${mismatch.found_type}</td><td>${mismatch.expected_signatures}</td><td>${mismatch.expected_types}</td></tr>`;
+                    }
+                    html += '</tbody></table>';
+                }
+                document.getElementById('module7-content').innerHTML = html;
+            }
+
+            // Generate tables
+            generateModule1Table();
+            generateModule2Table();
+            generateModule3Table();
+            generateModule5Table();
+            generateModule6Table();
+            generateModule7Table();
+        }
+
+        // Function to switch tabs
+        function switchTab(event) {
+            const tabId = event.target.getAttribute('data-tab');
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+                button.setAttribute('aria-selected', 'false');
+            });
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+            event.target.setAttribute('aria-selected', 'true');
+        }
+
+        // Add event listeners to tab buttons
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', switchTab);
+            button.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    switchTab(event);
+                }
+            });
+        });
+
+        // Handle file upload
+        const fileInput = document.getElementById('fileInput');
+        const fileStatus = document.getElementById('fileStatus');
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) {
+                fileStatus.textContent = 'No file selected';
+                fileStatus.classList.remove('success', 'error');
+                document.querySelectorAll('.table-container').forEach(container => {
+                    container.innerHTML = '<div class="loading">Please upload a Report.txt file</div>';
+                });
+                return;
+            }
+
+            if (!file.name.endsWith('.txt')) {
+                fileStatus.textContent = 'Please upload a .txt file';
+                fileStatus.classList.add('error');
+                fileStatus.classList.remove('success');
+                document.querySelectorAll('.table-container').forEach(container => {
+                    container.innerHTML = '<p class="error-message">Invalid file type. Please upload a .txt file.</p>';
+                });
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const text = e.target.result;
+                    fileStatus.textContent = `File loaded: ${file.name}`;
+                    fileStatus.classList.add('success');
+                    fileStatus.classList.remove('error');
+                    parseReport(text);
+                } catch (error) {
+                    console.error('Error reading file:', error);
+                    fileStatus.textContent = 'Error reading file';
+                    fileStatus.classList.add('error');
+                    fileStatus.classList.remove('success');
+                    document.querySelectorAll('.table-container').forEach(container => {
+                        container.innerHTML = '<p class="error-message">Error reading file. Please try again.</p>';
+                    });
+                }
+            };
+            reader.onerror = () => {
+                console.error('Error reading file');
+                fileStatus.textContent = 'Error reading file';
+                fileStatus.classList.add('error');
+                fileStatus.classList.remove('success');
+                document.querySelectorAll('.table-container').forEach(container => {
+                    container.innerHTML = '<p class="error-message">Error reading file. Please try again.</p>';
+                });
+            };
+            reader.readAsText(file);
+        });
+    </script>
+</body>
+</html>

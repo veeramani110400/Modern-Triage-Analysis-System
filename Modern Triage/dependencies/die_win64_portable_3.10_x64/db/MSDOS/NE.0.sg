@@ -1,0 +1,11 @@
+// Detect It Easy: detection rule file format
+
+init("type", "NE");
+
+function detect(bShowType, bShowVersion, bShowOptions) {
+    if (MSDOS.isNE()) {
+        bDetected = true;
+    }
+
+    return result(bShowType, bShowVersion, bShowOptions);
+}

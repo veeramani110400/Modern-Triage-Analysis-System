@@ -1,0 +1,480 @@
+[2025-09-28 16:26:43] === Malware Analysis Started ===
+[2025-09-28 16:26:43] 
+
+
+=== Module 1: Detect It Easy Analysis ===
+[2025-09-28 16:26:43] Running DIE with JSON output for entropy and packing analysis
+[2025-09-28 16:26:43] Executing command: ..\\dependencies\die_win64_portable_3.10_x64\diec.exe E:\testExes\a.exe --heuristicscan --deepscan --entropy --json
+[2025-09-28 16:26:44] Running DIE with text output for metadata analysis
+[2025-09-28 16:26:44] Executing command: ..\\dependencies\die_win64_portable_3.10_x64\diec.exe E:\testExes\a.exe
+[2025-09-28 16:26:44] 
+
+Parsed Detect It Easy Results:
+[2025-09-28 16:26:44] File Type: PE64
+[2025-09-28 16:26:44] Packer: Not packed
+[2025-09-28 16:26:44] Entropy: 5.4563905807832676
+[2025-09-28 16:26:44] Sections:
+Section(0)['.text']: Size=9216 bytes, Entropy=5.88, Status=not packed
+Section(1)['.data']: Size=512 bytes, Entropy=1.42, Status=not packed
+Section(2)['.rdata']: Size=3072 bytes, Entropy=4.76, Status=not packed
+Section(3)['.pdata']: Size=1024 bytes, Entropy=3.42, Status=not packed
+Section(4)['.xdata']: Size=1024 bytes, Entropy=3.73, Status=not packed
+Section(6)['.idata']: Size=5120 bytes, Entropy=4.42, Status=not packed
+Section(7)['.CRT']: Size=512 bytes, Entropy=0.28, Status=not packed
+Section(8)['.tls']: Size=512 bytes, Entropy=0.00, Status=not packed
+Section(9)['.rsrc']: Size=1536 bytes, Entropy=4.78, Status=not packed
+Section(10)['.reloc']: Size=512 bytes, Entropy=1.82, Status=not packed
+Section(11)['.debug_aranges']: Size=1024 bytes, Entropy=1.66, Status=not packed
+Section(12)['.debug_info']: Size=45056 bytes, Entropy=5.85, Status=not packed
+Section(13)['.debug_abbrev']: Size=8192 bytes, Entropy=4.79, Status=not packed
+Section(14)['.debug_line']: Size=7680 bytes, Entropy=4.92, Status=not packed
+Section(15)['.debug_frame']: Size=2560 bytes, Entropy=3.87, Status=not packed
+Section(16)['.debug_str']: Size=1024 bytes, Entropy=4.08, Status=not packed
+Section(17)['.debug_line_str']: Size=5632 bytes, Entropy=4.87, Status=not packed
+Section(18)['.debug_loclists']: Size=5120 bytes, Entropy=5.04, Status=not packed
+Section(19)['.debug_rnglists']: Size=512 bytes, Entropy=4.13, Status=not packed
+[2025-09-28 16:26:44] Overlay: Present, Size=53620 bytes, Entropy=4.22, Status=not packed
+[2025-09-28 16:26:44] Other:
+Unknown: Unknown
+[2025-09-28 16:26:44] Raw JSON Output:
+{
+  "records": [
+    {
+      "entropy": 2.220543141294623,
+      "name": "PE Header",
+      "offset": 0,
+      "size": 1536,
+      "status": "not packed"
+    },
+    {
+      "entropy": 5.8775271954224815,
+      "name": "Section(0)['.text']",
+      "offset": 1536,
+      "size": 9216,
+      "status": "not packed"
+    },
+    {
+      "entropy": 1.4164492556930248,
+      "name": "Section(1)['.data']",
+      "offset": 10752,
+      "size": 512,
+      "status": "not packed"
+    },
+    {
+      "entropy": 4.760859710721069,
+      "name": "Section(2)['.rdata']",
+      "offset": 11264,
+      "size": 3072,
+      "status": "not packed"
+    },
+    {
+      "entropy": 3.4174110341135275,
+      "name": "Section(3)['.pdata']",
+      "offset": 14336,
+      "size": 1024,
+      "status": "not packed"
+    },
+    {
+      "entropy": 3.726847377810965,
+      "name": "Section(4)['.xdata']",
+      "offset": 15360,
+      "size": 1024,
+      "status": "not packed"
+    },
+    {
+      "entropy": 4.422987107375969,
+      "name": "Section(6)['.idata']",
+      "offset": 16384,
+      "size": 5120,
+      "status": "not packed"
+    },
+    {
+      "entropy": 0.2823275090128165,
+      "name": "Section(7)['.CRT']",
+      "offset": 21504,
+      "size": 512,
+      "status": "not packed"
+    },
+    {
+      "entropy": 0.0028177637517362566,
+      "name": "Section(8)['.tls']",
+      "offset": 22016,
+      "size": 512,
+      "status": "not packed"
+    },
+    {
+      "entropy": 4.779416422960171,
+      "name": "Section(9)['.rsrc']",
+      "offset": 22528,
+      "size": 1536,
+      "status": "not packed"
+    },
+    {
+      "entropy": 1.8242379023810895,
+      "name": "Section(10)['.reloc']",
+      "offset": 24064,
+      "size": 512,
+      "status": "not packed"
+    },
+    {
+      "entropy": 1.6649201251505759,
+      "name": "Section(11)['.debug_aranges']",
+      "offset": 24576,
+      "size": 1024,
+      "status": "not packed"
+    },
+    {
+      "entropy": 5.845271070540044,
+      "name": "Section(12)['.debug_info']",
+      "offset": 25600,
+      "size": 45056,
+      "status": "not packed"
+    },
+    {
+      "entropy": 4.791700514542951,
+      "name": "Section(13)['.debug_abbrev']",
+      "offset": 70656,
+      "size": 8192,
+      "status": "not packed"
+    },
+    {
+      "entropy": 4.921713542848367,
+      "name": "Section(14)['.debug_line']",
+      "offset": 78848,
+      "size": 7680,
+      "status": "not packed"
+    },
+    {
+      "entropy": 3.8692392625900225,
+      "name": "Section(15)['.debug_frame']",
+      "offset": 86528,
+      "size": 2560,
+      "status": "not packed"
+    },
+    {
+      "entropy": 4.078854920453277,
+      "name": "Section(16)['.debug_str']",
+      "offset": 89088,
+      "size": 1024,
+      "status": "not packed"
+    },
+    {
+      "entropy": 4.8739356146774035,
+      "name": "Section(17)['.debug_line_str']",
+      "offset": 90112,
+      "size": 5632,
+      "status": "not packed"
+    },
+    {
+      "entropy": 5.042670079526208,
+      "name": "Section(18)['.debug_loclists']",
+      "offset": 95744,
+      "size": 5120,
+      "status": "not packed"
+    },
+    {
+      "entropy": 4.125537269398683,
+      "name": "Section(19)['.debug_rnglists']",
+      "offset": 100864,
+      "size": 512,
+      "status": "not packed"
+    },
+    {
+      "entropy": 4.223208480828405,
+      "name": "Overlay",
+      "offset": 101376,
+      "size": 53620,
+      "status": "not packed"
+    }
+  ],
+  "status": "not packed",
+  "total": 5.4563905807832676
+}
+[2025-09-28 16:26:44] Raw Text Output:
+[!] Heuristic scan is disabled. Use '--heuristicscan' to enable
+PE64
+    Unknown: Unknown
+
+
+[2025-09-28 16:26:44] 
+
+
+=== Module 2: String Extraction and Analysis ===
+[2025-09-28 16:26:44] Executing strings.exe command: ..\\dependencies\Strings\strings64.exe -n 6 -accepteula E:\testExes\a.exe
+[2025-09-28 16:26:44] Extracted 2765 strings from strings.exe
+[2025-09-28 16:26:44] No URL matches found.
+[2025-09-28 16:26:44] No Email matches found.
+[2025-09-28 16:26:44] No IP matches found.
+[2025-09-28 16:26:44] FilePath matches found (25):
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+C:\M\B\src\build-UCRT64
+[2025-09-28 16:26:44] No Registry matches found.
+[2025-09-28 16:26:44] No API matches found.
+[2025-09-28 16:26:44] No Crypto matches found.
+[2025-09-28 16:26:44] No Command matches found.
+[2025-09-28 16:26:44] Malicious keywords found (198):
+[2025-09-28 16:26:44] String: !This program cannot be run in DOS mode., Matched Keyword: Run
+[2025-09-28 16:26:44] String: Mingw-w64 runtime failure:, Matched Keyword: Run
+[2025-09-28 16:26:44] String: VirtualProtect failed with code 0x%x, Matched Keyword: VirtualProtect
+[2025-09-28 16:26:44] String: runtime error %d, Matched Keyword: Run
+[2025-09-28 16:26:44] String: CreateProcessW, Matched Keyword: CreateProcess
+[2025-09-28 16:26:44] String: VirtualProtect, Matched Keyword: VirtualProtect
+[2025-09-28 16:26:44] String: _ZNKSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE13get_allocatorEv, Matched Keyword: tor
+[2025-09-28 16:26:44] String: api-ms-win-crt-runtime-l1-1-0.dll, Matched Keyword: Run
+[2025-09-28 16:26:44] String: VectorRegister, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VectorControl, Matched Keyword: control
+[2025-09-28 16:26:44] String: VectorControl, Matched Keyword: tor
+[2025-09-28 16:26:44] String: DebugControl, Matched Keyword: control
+[2025-09-28 16:26:44] String: LastBranchToRip, Matched Keyword: tor
+[2025-09-28 16:26:44] String: LastExceptionToRip, Matched Keyword: tor
+[2025-09-28 16:26:44] String: ControlWord, Matched Keyword: control
+[2025-09-28 16:26:44] String: ErrorSelector, Matched Keyword: tor
+[2025-09-28 16:26:44] String: DataSelector, Matched Keyword: tor
+[2025-09-28 16:26:44] String: 2JOB_OBJECT_NET_RATE_CONTROL_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_ENABLE, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: _IMAGE_DATA_DIRECTORY, Matched Keyword: tor
+[2025-09-28 16:26:44] String: IMAGE_DATA_DIRECTORY, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_STORAGE, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_STORED_OBJECT, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_VECTOR, Matched Keyword: tor
+[2025-09-28 16:26:44] String: has_cctor, Matched Keyword: tor
+[2025-09-28 16:26:44] String: "_pei386_runtime_relocator, Matched Keyword: Run
+[2025-09-28 16:26:44] String: "_pei386_runtime_relocator, Matched Keyword: tor
+[2025-09-28 16:26:44] String: Destination, Matched Keyword: DES
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_ENABLE, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: VT_STORAGE, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_STORED_OBJECT, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_VECTOR, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __CTOR_LIST__, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __DTOR_LIST__, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __do_global_ctors, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __do_global_dtors, Matched Keyword: tor
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_ENABLE, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: VT_STORAGE, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_STORED_OBJECT, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_VECTOR, Matched Keyword: tor
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_ENABLE, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: _IMAGE_TLS_DIRECTORY64, Matched Keyword: tor
+[2025-09-28 16:26:44] String: IMAGE_TLS_DIRECTORY64, Matched Keyword: tor
+[2025-09-28 16:26:44] String: IMAGE_TLS_DIRECTORY, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __dyn_tls_dtor, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __tlregdtor, Matched Keyword: tor
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_ENABLE, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: PointerToRawData, Matched Keyword: tor
+[2025-09-28 16:26:44] String: PointerToRelocations, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_STORAGE, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_STORED_OBJECT, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_VECTOR, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __RUNTIME_PSEUDO_RELOC_LIST__, Matched Keyword: Run
+[2025-09-28 16:26:44] String: __RUNTIME_PSEUDO_RELOC_LIST_END__, Matched Keyword: Run
+[2025-09-28 16:26:44] String: runtime_pseudo_reloc_item_v1, Matched Keyword: Run
+[2025-09-28 16:26:44] String: runtime_pseudo_reloc_item_v2, Matched Keyword: Run
+[2025-09-28 16:26:44] String: magic2, Matched Keyword: c2
+[2025-09-28 16:26:44] String: runtime_pseudo_reloc_v2, Matched Keyword: Run
+[2025-09-28 16:26:44] String: VirtualProtect, Matched Keyword: VirtualProtect
+[2025-09-28 16:26:44] String: 3_pei386_runtime_relocator, Matched Keyword: Run
+[2025-09-28 16:26:44] String: 3_pei386_runtime_relocator, Matched Keyword: tor
+[2025-09-28 16:26:44] String: <restore_modified_sections, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VectorRegister, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VectorControl, Matched Keyword: control
+[2025-09-28 16:26:44] String: VectorControl, Matched Keyword: tor
+[2025-09-28 16:26:44] String: DebugControl, Matched Keyword: control
+[2025-09-28 16:26:44] String: LastBranchToRip, Matched Keyword: tor
+[2025-09-28 16:26:44] String: LastExceptionToRip, Matched Keyword: tor
+[2025-09-28 16:26:44] String: ControlWord, Matched Keyword: control
+[2025-09-28 16:26:44] String: ErrorSelector, Matched Keyword: tor
+[2025-09-28 16:26:44] String: DataSelector, Matched Keyword: tor
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_ENABLE, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: VT_STORAGE, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_STORED_OBJECT, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_VECTOR, Matched Keyword: tor
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_ENABLE, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: CreatorBackTraceIndex, Matched Keyword: tor
+[2025-09-28 16:26:44] String: CreatorBackTraceIndexHigh, Matched Keyword: tor
+[2025-09-28 16:26:44] String: key_dtor_list, Matched Keyword: tor
+[2025-09-28 16:26:44] String: $__mingwthr_run_key_dtors, Matched Keyword: Run
+[2025-09-28 16:26:44] String: $__mingwthr_run_key_dtors, Matched Keyword: tor
+[2025-09-28 16:26:44] String: ___w64_mingwthr_remove_key_dtor, Matched Keyword: tor
+[2025-09-28 16:26:44] String: ___w64_mingwthr_add_key_dtor, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __RUNTIME_PSEUDO_RELOC_LIST_END__, Matched Keyword: Run
+[2025-09-28 16:26:44] String: __RUNTIME_PSEUDO_RELOC_LIST__, Matched Keyword: Run
+[2025-09-28 16:26:44] String: _IMAGE_DATA_DIRECTORY, Matched Keyword: tor
+[2025-09-28 16:26:44] String: IMAGE_DATA_DIRECTORY, Matched Keyword: tor
+[2025-09-28 16:26:44] String: DataDirectory, Matched Keyword: tor
+[2025-09-28 16:26:44] String: PointerToRawData, Matched Keyword: tor
+[2025-09-28 16:26:44] String: PointerToRelocations, Matched Keyword: tor
+[2025-09-28 16:26:44] String: _IMAGE_IMPORT_DESCRIPTOR, Matched Keyword: DES
+[2025-09-28 16:26:44] String: _IMAGE_IMPORT_DESCRIPTOR, Matched Keyword: tor
+[2025-09-28 16:26:44] String: IMAGE_IMPORT_DESCRIPTOR, Matched Keyword: DES
+[2025-09-28 16:26:44] String: IMAGE_IMPORT_DESCRIPTOR, Matched Keyword: tor
+[2025-09-28 16:26:44] String: PIMAGE_IMPORT_DESCRIPTOR, Matched Keyword: DES
+[2025-09-28 16:26:44] String: PIMAGE_IMPORT_DESCRIPTOR, Matched Keyword: tor
+[2025-09-28 16:26:44] String: importDesc, Matched Keyword: DES
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_ENABLE, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: VT_STORAGE, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_STORED_OBJECT, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_VECTOR, Matched Keyword: tor
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_ENABLE, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG, Matched Keyword: control
+[2025-09-28 16:26:44] String: JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS, Matched Keyword: control
+[2025-09-28 16:26:44] String: VT_STORAGE, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_STORED_OBJECT, Matched Keyword: tor
+[2025-09-28 16:26:44] String: VT_VECTOR, Matched Keyword: tor
+[2025-09-28 16:26:44] String: DataDirectory, Matched Keyword: tor
+[2025-09-28 16:26:44] String: has_cctor, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .text$_ZNSt15__new_allocatorIwED2Ev, Matched Keyword: tor
+[2025-09-28 16:26:44] String: _ZNSt15__new_allocatorIwED2Ev, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .text$_ZZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE12_M_constructIPcEEvT_S7_St20forward_iterator_tagEN6_GuardC1EPS4_, Matched Keyword: tor
+[2025-09-28 16:26:44] String: _ZZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE12_M_constructIPcEEvT_S7_St20forward_iterator_tagEN6_GuardC1EPS4_, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .text$_ZZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE12_M_constructIPcEEvT_S7_St20forward_iterator_tagEN6_GuardD1Ev, Matched Keyword: tor
+[2025-09-28 16:26:44] String: _ZZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE12_M_constructIPcEEvT_S7_St20forward_iterator_tagEN6_GuardD1Ev, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .text$_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE12_M_constructIPcEEvT_S7_St20forward_iterator_tag, Matched Keyword: tor
+[2025-09-28 16:26:44] String: _ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE12_M_constructIPcEEvT_S7_St20forward_iterator_tag, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .text$_ZSt12__str_concatINSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEEEET_PKNS6_10value_typeENS6_9size_typeES9_SA_RKNS6_14allocator_typeE, Matched Keyword: tor
+[2025-09-28 16:26:44] String: _ZSt12__str_concatINSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEEEET_PKNS6_10value_typeENS6_9size_typeES9_SA_RKNS6_14allocator_typeE, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .xdata$_ZNSt15__new_allocatorIwED2Ev, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .pdata$_ZNSt15__new_allocatorIwED2Ev, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .xdata$_ZZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE12_M_constructIPcEEvT_S7_St20forward_iterator_tagEN6_GuardC1EPS4_, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .pdata$_ZZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE12_M_constructIPcEEvT_S7_St20forward_iterator_tagEN6_GuardC1EPS4_, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .xdata$_ZZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE12_M_constructIPcEEvT_S7_St20forward_iterator_tagEN6_GuardD1Ev, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .pdata$_ZZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE12_M_constructIPcEEvT_S7_St20forward_iterator_tagEN6_GuardD1Ev, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .xdata$_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE12_M_constructIPcEEvT_S7_St20forward_iterator_tag, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .pdata$_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE12_M_constructIPcEEvT_S7_St20forward_iterator_tag, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .xdata$_ZSt12__str_concatINSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEEEET_PKNS6_10value_typeENS6_9size_typeES9_SA_RKNS6_14allocator_typeE, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .pdata$_ZSt12__str_concatINSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEEEET_PKNS6_10value_typeENS6_9size_typeES9_SA_RKNS6_14allocator_typeE, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __do_global_dtors, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __do_global_ctors, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .rdata$.refptr.__CTOR_LIST__, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __dyn_tls_dtor, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __tlregdtor, Matched Keyword: tor
+[2025-09-28 16:26:44] String: _pei386_runtime_relocator, Matched Keyword: Run
+[2025-09-28 16:26:44] String: _pei386_runtime_relocator, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .rdata$.refptr.__RUNTIME_PSEUDO_RELOC_LIST_END__, Matched Keyword: Run
+[2025-09-28 16:26:44] String: .rdata$.refptr.__RUNTIME_PSEUDO_RELOC_LIST__, Matched Keyword: Run
+[2025-09-28 16:26:44] String: __mingwthr_run_key_dtors.part.0, Matched Keyword: Run
+[2025-09-28 16:26:44] String: __mingwthr_run_key_dtors.part.0, Matched Keyword: tor
+[2025-09-28 16:26:44] String: key_dtor_list, Matched Keyword: tor
+[2025-09-28 16:26:44] String: ___w64_mingwthr_add_key_dtor, Matched Keyword: tor
+[2025-09-28 16:26:44] String: ___w64_mingwthr_remove_key_dtor, Matched Keyword: tor
+[2025-09-28 16:26:44] String: register_frame_ctor, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .ctors.65535, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .rdata_runtime_pseudo_reloc, Matched Keyword: Run
+[2025-09-28 16:26:44] String: ___RUNTIME_PSEUDO_RELOC_LIST__, Matched Keyword: Run
+[2025-09-28 16:26:44] String: ___DTOR_LIST__, Matched Keyword: tor
+[2025-09-28 16:26:44] String: .refptr.__CTOR_LIST__, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __imp_CreateProcessW, Matched Keyword: CreateProcess
+[2025-09-28 16:26:44] String: .refptr.__RUNTIME_PSEUDO_RELOC_LIST__, Matched Keyword: Run
+[2025-09-28 16:26:44] String: _ZNKSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE13get_allocatorEv, Matched Keyword: tor
+[2025-09-28 16:26:44] String: ___RUNTIME_PSEUDO_RELOC_LIST_END__, Matched Keyword: Run
+[2025-09-28 16:26:44] String: VirtualProtect, Matched Keyword: VirtualProtect
+[2025-09-28 16:26:44] String: .refptr.__RUNTIME_PSEUDO_RELOC_LIST_END__, Matched Keyword: Run
+[2025-09-28 16:26:44] String: __RUNTIME_PSEUDO_RELOC_LIST__, Matched Keyword: Run
+[2025-09-28 16:26:44] String: __CTOR_LIST__, Matched Keyword: tor
+[2025-09-28 16:26:44] String: ___CTOR_LIST__, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __lib64_libapi_ms_win_crt_runtime_l1_1_0_a_iname, Matched Keyword: Run
+[2025-09-28 16:26:44] String: __DTOR_LIST__, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __imp__ZNKSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE13get_allocatorEv, Matched Keyword: tor
+[2025-09-28 16:26:44] String: __imp_VirtualProtect, Matched Keyword: VirtualProtect
+[2025-09-28 16:26:44] String: CreateProcessW, Matched Keyword: CreateProcess
+[2025-09-28 16:26:44] String: _head_lib64_libapi_ms_win_crt_runtime_l1_1_0_a, Matched Keyword: Run
+[2025-09-28 16:26:44] String: __RUNTIME_PSEUDO_RELOC_LIST_END__, Matched Keyword: Run
+[2025-09-28 16:26:44] MS-DOS Stub Count: 1
+[2025-09-28 16:26:44] 
+
+
+=== Module 3: PE Header Analysis ===
+[2025-09-28 16:26:44] Compiler Timestamp: 2024-02-19 15:21:19
+[2025-09-28 16:26:44] Subsystem: IMAGE_SUBSYSTEM_WINDOWS_CUI
+[2025-09-28 16:26:44] .text Section - Raw Data Size: 9216
+[2025-09-28 16:26:44] .text Section - Virtual Size: 9064
+[2025-09-28 16:26:44] 
+
+
+=== Module 4: Capa Analysis ===
+[2025-09-28 16:26:44] Error: capa.exe not found at ..\\dependencies\capa\capa.exe
+[2025-09-28 16:26:44] 
+
+
+=== Module 5: Remove Hidden Attributes ===
+[2025-09-28 16:26:44] No hidden or system items found.
+[2025-09-28 16:26:44] 
+
+
+=== Module 6: MalAPI.io Import Comparison ===
+[2025-09-28 16:26:44] Found 3 matching APIs grouped by MITRE ATT&CK technique:
+[2025-09-28 16:26:44] 
+--- Technique: Debugger Evasion (T1622) ---
+[2025-09-28 16:26:44]   - API: Sleep (Tactic: Defense Evasion, Category: Evasion)
+[2025-09-28 16:26:44] 
+--- Technique: Process Injection (T1055) ---
+[2025-09-28 16:26:44]   - API: VirtualProtect (Tactic: Execution, Category: Injection)
+[2025-09-28 16:26:44]   - API: WaitForSingleObject (Tactic: Execution, Category: Injection)
+[2025-09-28 16:26:44] 
+
+
+=== Module 7: File Signature Verification ===
+[2025-09-28 16:26:44] Scanning directory for signature mismatches: E:\testExes
+[2025-09-28 16:26:44] Found 1 file signature mismatches:
+[2025-09-28 16:26:44] -> Mismatch in file: E:\testExes\b.txt
+   Extension: .txt
+   Expected Type(s): UTF-8 byte order mark, commonly seen in text files., UTF-16LE byte order mark, commonly seen in text files., UTF-16BE byte order mark, commonly seen in text files., UTF-32LE byte order mark for text, UTF-32BE byte order mark for text, SCSU byte order mark for text
+   Expected Signature(s): efbbbf, fffe, feff, fffe0000, 0000feff, 0efeff
+   Found Signature (start): 4d5a90000300000004000000ffff0000
+   Found Signature matches type: DOS MZ executable and its descendants (including NE and PE)
+[2025-09-28 16:26:44] === Malware Analysis Completed ===

@@ -1,0 +1,15 @@
+// Detect It Easy: detection rule file format
+
+init("virtual machine", "JVM");
+
+function detect(bShowType, bShowVersion, bShowOptions) {
+    if (JAR.isVerbose()) {
+        sName = JAR.getOperationSystemName();
+        sVersion = JAR.getOperationSystemVersion();
+        sOptions = JAR.getOperationSystemOptions();
+
+        bDetected = true;
+    }
+
+    return result(bShowType, bShowVersion, bShowOptions);
+}
