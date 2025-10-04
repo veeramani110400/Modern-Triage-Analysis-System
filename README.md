@@ -74,7 +74,7 @@ It integrates popular tools and custom modules to quickly extract metadata, dete
 ├── file_signatures.json
 ├── malapi_data.json
 ├── malicious_keywords.json
-├── malware_triage.py   ← main script
+├── modern_triage_analysis_system.py   ← main script
 ```
 
 ---
@@ -82,7 +82,7 @@ It integrates popular tools and custom modules to quickly extract metadata, dete
 ## 🚀 Usage
 
 1. Place the malware sample in your analysis directory.
-2. Update the **`MALWARE_PATH`** in the script (`malware_triage.py`).
+2. Update the **`MALWARE_PATH`** in the script (`modern_triage_analysis_system.py`).
 3. Run the tool:
 
    ```bash
